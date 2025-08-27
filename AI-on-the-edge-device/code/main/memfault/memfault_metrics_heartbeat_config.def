@@ -1,0 +1,6 @@
+#include "sdkconfig.h"
+
+MEMFAULT_METRICS_KEY_DEFINE(cpu_temp, kMemfaultMetricType_Signed)
+MEMFAULT_METRICS_KEY_DEFINE(wifi_rssi, kMemfaultMetricType_Signed)
+MEMFAULT_METRICS_KEY_DEFINE(recognition_time_seconds, kMemfaultMetricType_Signed)
+

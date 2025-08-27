@@ -29,6 +29,8 @@
 #include "psram.h"
 #include "basic_auth.h"
 
+#include "memfault/metrics/metrics.h"
+
 // support IDF 5.x
 #ifndef portTICK_RATE_MS
 #define portTICK_RATE_MS portTICK_PERIOD_MS
@@ -1724,6 +1726,11 @@ void task_autodoFlow(void *pvParameter)
             LogFile.WriteToFile(ESP_LOG_WARN, TAG, "Time server is configured, but time is not yet set!");
             StatusLED(TIME_CHECK, 1, false);
         }
+
+        // Memfault
+        MEMFAULT_METRIC_SET_SIGNED(recognition_time_seconds, getUpTime() - roundStartTime);
+        MEMFAULT_METRIC_SET_SIGNED(cpu_temp, temperatureRead());
+        MEMFAULT_METRIC_SET_SIGNED(wifi_rssi, get_WIFI_RSSI());
 
 #if (defined WLAN_USE_MESH_ROAMING && defined WLAN_USE_MESH_ROAMING_ACTIVATE_CLIENT_TRIGGERED_QUERIES)
         wifiRoamingQuery();
