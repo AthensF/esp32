@@ -1,0 +1,47 @@
+# Application Kconfig file
+#
+# This is loaded when building this directory with west.
+menu "Memfault Example Application Configuration"
+
+config ZEPHYR_MEMFAULT_EXAMPLE_AUTO_SETTINGS
+    bool
+    default y
+    # Force on CONFIG_GPIO if the led0 alias is enabled
+    select GPIO if $(dt_alias_enabled,led0)
+    help
+      Non-user-settable configuration options for the example app.
+
+config ZEPHYR_MEMFAULT_EXAMPLE_THREAD_TOGGLE
+    bool "Example thread create + abort toggling every 10 seconds"
+    default n
+    help
+      Enables creating and aborting an example thread every 10 seconds in the
+      example app
+
+config ZEPHYR_MEMFAULT_EXAMPLE_METRICS
+    bool "Use metrics to monitor memory usage and execution time in the example app"
+    default y
+    depends on MEMFAULT && MEMFAULT_HEAP_STATS
+    depends on THREAD_STACK_INFO
+    depends on THREAD_RUNTIME_STATS
+
+config ZEPHYR_MEMFAULT_EXAMPLE_SOFTWARE_VERSION
+    string "Software Version"
+    default "1.0.0"
+    help
+      The software version to report to Memfault.
+
+# Stub expressions, to support backwards compatibility with older Zephyr
+# versions where these options were not available.
+config COMPILER_WARNINGS_AS_ERRORS  # v3.6.0+
+    bool "Treat warnings as errors"
+
+config CRC  # v3.3.0+
+    bool "Cyclic redundancy check (CRC) Support"
+
+config BUILD_OUTPUT_META  # v3.0.0+
+    bool "Create a build meta file"
+
+endmenu
+
+source "Kconfig.zephyr"

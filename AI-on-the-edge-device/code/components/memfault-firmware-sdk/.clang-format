@@ -1,0 +1,43 @@
+---
+BasedOnStyle: Google
+
+AlignArrayOfStructures: None
+AllowShortBlocksOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: Empty
+AlwaysBreakBeforeMultilineStrings: false
+AttributeMacros:
+  - MEMFAULT_ALIGNED
+  - MEMFAULT_NAKED_FUNC
+  - MEMFAULT_NO_ALLOC
+  - MEMFAULT_NO_OPT
+  - MEMFAULT_NORETURN
+  - MEMFAULT_PACKED
+  - MEMFAULT_PACKED_STRUCT
+  - MEMFAULT_PRINTF_LIKE_FUNC
+  - MEMFAULT_PUT_IN_SECTION
+  - MEMFAULT_UNREACHABLE
+  - MEMFAULT_UNUSED
+  - MEMFAULT_USED
+  - MEMFAULT_WEAK
+BitFieldColonSpacing: None
+BreakBeforeBinaryOperators: None
+BreakBeforeTernaryOperators: false
+ColumnLimit: 100
+ContinuationIndentWidth: 2
+Cpp11BracedListStyle: false
+DerivePointerAlignment: false
+FixNamespaceComments: false
+ForEachMacros:
+  - MEMFAULT_SHELL_FOR_EACH_COMMAND
+IndentPPDirectives: BeforeHash
+IndentWidth: 2
+NamespaceIndentation: All
+NamespaceMacros:
+  - TEST
+  - TEST_GROUP
+PointerAlignment: Right
+SpaceInEmptyBlock: true
+WhitespaceSensitiveMacros:
+  - MEMFAULT_QUOTE
+  - MEMFAULT_ZEPHYR_INCLUDE
+  - Pragma

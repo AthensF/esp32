@@ -1,0 +1,21 @@
+"""
+Small wrapper to hook the Memfault build id script into platform IO.
+"""
+
+Import("env")
+
+print(env.Dump())
+
+env.AddPostAction(
+    "$BUILD_DIR/${PROGNAME}.elf",
+    env.VerboseAction(
+        " ".join(
+            [
+                "$PYTHONEXE",
+                "$PROJECT_DIR/third-party/memfault-firmware-sdk/scripts/fw_build_id.py",
+                "$BUILD_DIR/${PROGNAME}.elf",
+            ]
+        ),
+        "Adding build id to $BUILD_DIR/${PROGNAME}.elf",
+    ),
+)
